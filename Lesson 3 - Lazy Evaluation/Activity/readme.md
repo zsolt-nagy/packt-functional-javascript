@@ -1,5 +1,17 @@
 # Chat App
 
+## Using the Slack API
+
+1. Register an account on Slack
+2. Create a legacy token on [https://api.slack.com/custom-integrations/legacy-tokens](https://api.slack.com/custom-integrations/legacy-tokens)
+3. Place it in `constants/api.const.js`
+
+Note: we will use the simplest possible way to connect to the Slack API. On production, you need to follow the OAuth2 way:
+1. Register your app here: [https://api.slack.com/apps](https://api.slack.com/apps)
+2. Visit [api.slack.com/docs/oauth](api.slack.com/docs/oauth) and follow the directions there.
+
+
+
 ## Build and Run the
 
 ```
