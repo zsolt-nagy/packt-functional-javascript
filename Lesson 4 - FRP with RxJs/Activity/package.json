@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "browserify": "^16.2.3",
+    "rxjs": "^6.4.0",
     "watchify": "^3.11.1"
   }
 }
