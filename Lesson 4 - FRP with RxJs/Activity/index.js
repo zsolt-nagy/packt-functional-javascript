@@ -3,7 +3,7 @@ import {
   registerClickListener,
   renderChannelList
 } from './presenters/channel-list.js';
-import { fetchMessages } from './models/messages.model.js';
+import { fetchMessages, postMessage } from './models/messages.model.js';
 import { getChannelUpdates } from './models/socketupdates.model.js';
 import { fetchUsers } from './models/users.model.js';
 import { renderMessageList } from './presenters/message-list.js';
@@ -11,15 +11,21 @@ import { addInputListener } from './presenters/message-input.js';
 
 import { forkJoin } from 'rxjs';
 
+// imperative, stateful code
+const insertMessage = message => {
+  postMessage( state.channelId, message )
+    .subscribe( () => displayChannel( state.channelId ) );
+}
+
 // stateful code
 const state = {
   channelId: null,
   messages: [],
   users: [],
-  renderMessageList
+  insertMessage
 }
 
-const displayChannel = ( channelId ) => {
+const displayChannel = channelId => {
   forkJoin(
     fetchMessages( channelId ),
     fetchUsers()
