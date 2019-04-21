@@ -2,18 +2,14 @@ import messages from './data/messages.json';
 import users from './data/users.json';
 
 import { fetchChannels } from './models/channels.model.js';
+import {
+  registerClickListener,
+  renderChannelList
+} from './presenters/channel-list.js';
 
 const locale = 'en';
 const ENTER_KEY = 13;
 const $messageInput = document.querySelector( '.js-message-input' );
-
-const getChannelTemplate = channels =>
-  channels
-      .map( channel => `
-        <div class="channel" tooltip="${channel.topic.value}">
-          ${channel.name}
-        </div>
-      ` ).join( '' );
 
 const timestampToDateTime = locale => isDate => timestampString => {
   const date = new Date( Number.parseFloat( timestampString ) * 1000 );
@@ -41,11 +37,6 @@ const getMessagesTemplate = messages =>
     </div>
   `).join( '' );
 
-const renderChannelList = channels => {
-  document.querySelector( '.js-channel-list' ).innerHTML =
-      getChannelTemplate( channels );
-}
-
 const renderMessageList = messages => {
   document.querySelector( '.js-message-list' ).innerHTML =
       getMessagesTemplate( messages );
@@ -59,6 +50,7 @@ const handleMessageKeypress = ( insertMessage, event ) => {
 }
 
 const app = async () => {
+    registerClickListener( console.info );
     const channels = await fetchChannels();
     renderChannelList( channels );
     renderMessageList( messages );
