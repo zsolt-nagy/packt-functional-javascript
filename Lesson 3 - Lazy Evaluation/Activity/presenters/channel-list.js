@@ -3,7 +3,7 @@
 const getChannelTemplate = channels =>
   channels
       .map( channel => `
-        <div class="channel"
+        <div class="channel  js-channel"
              tooltip="${channel.topic.value}"
              data-id="${channel.id}"
         >
@@ -18,6 +18,10 @@ export const renderChannelList = channels => {
 
 const handleChannelClick = ( callback, event ) => {
   if ( event.target.dataset && event.target.dataset.id ) {
+    document.querySelectorAll( '.js-channel' ).forEach(
+      node => node.classList.remove( 'selected' )
+    );
+    event.target.classList.add( 'selected' );
     callback( event.target.dataset.id );
   }
 }

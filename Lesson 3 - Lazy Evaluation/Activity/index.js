@@ -6,6 +6,7 @@ import {
   registerClickListener,
   renderChannelList
 } from './presenters/channel-list.js';
+import { fetchMessages } from './models/messages.model.js';
 
 const locale = 'en';
 const ENTER_KEY = 13;
@@ -49,11 +50,15 @@ const handleMessageKeypress = ( insertMessage, event ) => {
   }
 }
 
+const displayChannel = async channelId => {
+  const messages = await fetchMessages( channelId );
+  renderMessageList( messages );
+}
+
 const app = async () => {
-    registerClickListener( console.info );
+    registerClickListener( displayChannel );
     const channels = await fetchChannels();
     renderChannelList( channels );
-    renderMessageList( messages );
 
     // imperative, stateful code
     const insertMessage = message => {
