@@ -1,6 +1,5 @@
 import { API_TOKEN } from '../constants/api.const';
 import { from } from 'rxjs';
-import { map, mergeAll } from 'rxjs/operators';
 
 const CHANNELS_URL = `https://slack.com/api/channels.list?token=${API_TOKEN}`;
 

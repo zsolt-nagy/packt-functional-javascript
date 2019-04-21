@@ -1,10 +1,10 @@
 
 
-const getChannelTemplate = channels =>
+const getChannelTemplate = channels => 
   channels
       .map( channel => `
         <div class="channel  js-channel"
-             tooltip="${channel.topic.value}"
+             tooltip="${channel.topic || 'no description'}"
              data-id="${channel.id}"
         >
           ${channel.name}

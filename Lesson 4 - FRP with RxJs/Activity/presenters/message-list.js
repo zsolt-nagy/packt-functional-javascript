@@ -26,7 +26,6 @@ const getMessagesTemplate = ( messages, users ) =>
   `).join( '' );
 
 export const renderMessageList = ( messages, users ) => {
-  window.users = users;
   document.querySelector( '.js-message-list' ).innerHTML =
       getMessagesTemplate( messages, users );
 }

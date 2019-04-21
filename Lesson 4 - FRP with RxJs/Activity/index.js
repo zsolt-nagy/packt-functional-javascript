@@ -8,6 +8,8 @@ import { fetchUsers } from './models/users.model.js';
 import { renderMessageList } from './presenters/message-list.js';
 import { addInputListener } from './presenters/message-input.js';
 
+import { combineLatest } from 'rxjs';
+
 // stateful code
 const state = {
   channelId: null,
@@ -16,13 +18,16 @@ const state = {
   renderMessageList
 }
 
-const displayChannel = async ( channelId ) => {
-  state.channelId = channelId;
-  const messages = await fetchMessages( channelId );
-  state.messages = messages;
-  const users = await fetchUsers();
-  state.users = users;
-  renderMessageList( messages, users );
+const displayChannel = ( channelId ) => {
+  combineLatest(
+    fetchMessages( channelId ),
+    fetchUsers()
+  ).subscribe( ( [ messages, users ] ) => {
+    state.channelId = channelId;
+    state.messages = messages;
+    state.users = users;
+    renderMessageList( messages, users );
+  } );
 }
 
 const app = async () => {
