@@ -12,6 +12,7 @@ const getChannelTemplate = channels =>
       ` ).join( '' );
 
 export const renderChannelList = channels => {
+  window.channels = channels;
       document.querySelector( '.js-channel-list' ).innerHTML =
           getChannelTemplate( channels );
     }

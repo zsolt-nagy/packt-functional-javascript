@@ -28,8 +28,8 @@ const displayChannel = async ( channelId ) => {
 const app = async () => {
     const users = await fetchUsers();
     registerClickListener( displayChannel );
-    const channels = await fetchChannels();
-    renderChannelList( channels );
+
+    fetchChannels().subscribe( channels => renderChannelList( channels ) );
 
     addInputListener( state );
 }
