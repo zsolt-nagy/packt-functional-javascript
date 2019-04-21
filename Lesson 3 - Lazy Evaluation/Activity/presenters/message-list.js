@@ -12,7 +12,7 @@ const timestampToLocaleTime  = timestampToDateTime( LOCALE )( false );
 
 const getUser = users => id => (
       users.find( user => user.id === id ) ||
-      { name: '____' }
+      { profile: { real_name: '____' } }
     ).profile.real_name;
 
 const getMessagesTemplate = ( messages, users ) =>
