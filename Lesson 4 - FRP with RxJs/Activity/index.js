@@ -4,11 +4,12 @@ import {
   renderChannelList
 } from './presenters/channel-list.js';
 import { fetchMessages } from './models/messages.model.js';
+import { getChannelUpdates } from './models/socketupdates.model.js';
 import { fetchUsers } from './models/users.model.js';
 import { renderMessageList } from './presenters/message-list.js';
 import { addInputListener } from './presenters/message-input.js';
 
-import { combineLatest } from 'rxjs';
+import { forkJoin } from 'rxjs';
 
 // stateful code
 const state = {
@@ -19,7 +20,7 @@ const state = {
 }
 
 const displayChannel = ( channelId ) => {
-  combineLatest(
+  forkJoin(
     fetchMessages( channelId ),
     fetchUsers()
   ).subscribe( ( [ messages, users ] ) => {
@@ -30,12 +31,18 @@ const displayChannel = ( channelId ) => {
   } );
 }
 
+const updateChannel = event => {
+  if ( event.type === 'message' && event.channel === state.channelId ) {
+    displayChannel( state.channelId );
+  }
+}
+
 const app = async () => {
-    const users = await fetchUsers();
+    getChannelUpdates().then(
+      socket => socket.subscribe( updateChannel )
+    );
     registerClickListener( displayChannel );
-
     fetchChannels().subscribe( channels => renderChannelList( channels ) );
-
     addInputListener( state );
 }
 
