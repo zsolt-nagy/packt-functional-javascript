@@ -1,0 +1,14 @@
+[
+    {
+      "name": "Channel 1",
+      "purpose": {
+          "value": "channel 1 description"
+        }
+    },
+    {
+      "name": "Channel 2",
+      "purpose": {
+          "value": "channel 2 description"
+        }
+    }
+]
