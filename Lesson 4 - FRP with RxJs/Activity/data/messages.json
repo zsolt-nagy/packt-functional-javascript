@@ -1,0 +1,20 @@
+[
+  {
+    "type": "message",
+    "user": "U123456",
+    "text": "This is the first message",
+    "ts":   "1555803296.654123"
+  },
+  {
+    "type": "message",
+    "user": "U123457",
+    "text": "This is the second message",
+    "ts":   "1555803999.654123"
+  },
+  {
+    "type": "message",
+    "user": "U123456",
+    "text": "This is the third message",
+    "ts":   "1556803296.654123"
+  }
+]

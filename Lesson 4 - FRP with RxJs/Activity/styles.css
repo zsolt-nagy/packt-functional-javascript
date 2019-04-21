@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+[tooltip]:after {
+    content: attr(tooltip);
+    position: absolute;
+    opacity: 0;
+}
+
+[tooltip]:hover:after {
+    opacity: 1;
+    background-color: black;
+    padding: 6px;
+    width: 40%;
+}
+
+.chat-app {
+    height: 100vh;
+    display: flex;
+}
+
+.left-container {
+    width: 30%;
+}
+
+.right-container {
+    width: 70%;
+}
+
+.chat-window {
+    height: 90%;
+    background-color: rgb( 177, 211, 177 );
+    overflow-y: scroll;
+}
+
+.chat-window .message {
+    margin: 0.5rem 1rem 0 1rem;
+}
+
+.chat-window .date,
+.chat-window .time,
+.chat-window .user,
+.chat-window .text {
+    display: inline-block;
+}
+
+.chat-window .date,
+.chat-window .time,
+.chat-window .user {
+    font-weight: 600;
+}
+
+.channel-window {
+    height: 100%;
+    background-color: rgb( 133, 55, 99 );
+}
+
+.channel-window .channel {
+    color: rgb( 222, 222, 222 );
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.5rem 1rem 0 1rem;
+}
+
+.channel-window .channel.selected {
+  background-color: rgb( 222, 88, 88 );
+}
+
+.chat-input-form {
+    height: 10%;
+    background-color: rgb( 47, 122, 244 );
+}
+
+.chat-input-form .chat-input {
+    top: 0.4rem;
+    left: 0.4rem;
+    height: calc( 100% - 0.8rem );
+    width: calc( 100% - 0.8rem );
+    position: relative;
+}
